@@ -1,0 +1,6 @@
+{
+  "name": "Phantasm-Orbit // Ghost Satellite Telemetry",
+  "description": "Ghost satellite telemetry tracker, TabPFN orbital decay forecaster, interactive 3D orbital debris intelligence, and digital séance communication channel.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
