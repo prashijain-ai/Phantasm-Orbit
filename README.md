@@ -8,7 +8,7 @@
 
 > *"There are 36,500 uncommunicative corpses orbiting above your head at 28,000 km/h. Their chemical batteries ruptured decades ago. Their solar arrays are fractured by micrometeoroids. Yet tonight, as they cross Earth's shadow, their transponders are screaming on dead frequencies."*
 
-🔗 **Live Interactive Command Center:** **phantasm-orbit.vercel.app**
+🔗 **Live Interactive Command Center:** **[phantasm-orbit.vercel.app](https://phantasm-orbit.vercel.app/)**
 
 <img width="1470" height="956" alt="Screenshot 2026-10-29 at 10 50 40 PM copy" src="https://github.com/user-attachments/assets/b412e41c-1c6b-4f54-9b20-346cdb386da1" />
 
