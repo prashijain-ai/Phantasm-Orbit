@@ -10,10 +10,9 @@ import { TelemetrySidebar } from './components/TelemetrySidebar';
 import { ThreeOrbitalView } from './components/ThreeOrbitalView';
 import { SeanceTerminal } from './components/SeanceTerminal';
 import { audioSynth } from './utils/audioSynthesizer';
-import { Volume2, VolumeX } from 'lucide-react';
 
 export default function App() {
-  const [selectedSatellite, setSelectedSatellite] = useState<GhostSatellite>(GHOST_SATELLITES[1]); 
+  const [selectedSatellite, setSelectedSatellite] = useState<GhostSatellite>(GHOST_SATELLITES[1]); // Envisat default
   const [scanlinesEnabled, setScanlinesEnabled] = useState<boolean>(false);
   const [simSpeed, setSimSpeed] = useState<number>(1);
   const [audioEnabled, setAudioEnabled] = useState<boolean>(true);
@@ -58,31 +57,17 @@ export default function App() {
       )}
 
       {/* 1. TOP NAVIGATION BAR */}
-      <div className="relative">
-        <TopNav
-          satellites={GHOST_SATELLITES}
-          selectedSatellite={selectedSatellite}
-          onSelectSatellite={setSelectedSatellite}
-          scanlinesEnabled={scanlinesEnabled}
-          onToggleScanlines={() => setScanlinesEnabled(!scanlinesEnabled)}
-          simSpeed={simSpeed}
-          onCycleSimSpeed={handleCycleSimSpeed}
-        />
-        
-        {/* Cinematic Audio Toggle Button (Overlaid top right) */}
-        <button
-          onClick={handleToggleAudio}
-          className={`absolute right-4 top-2.5 z-30 px-2.5 py-1 text-xs font-mono rounded flex items-center gap-1.5 transition-all border ${
-            audioEnabled
-              ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.2)]'
-              : 'bg-slate-900 text-slate-500 border-slate-800 hover:text-slate-300'
-          }`}
-          title="Toggle Procedural Horror Audio Synthesizer"
-        >
-          {audioEnabled ? <Volume2 className="w-3.5 h-3.5 animate-pulse" /> : <VolumeX className="w-3.5 h-3.5" />}
-          <span>HORROR AUDIO: {audioEnabled ? 'ON' : 'MUTED'}</span>
-        </button>
-      </div>
+      <TopNav
+        satellites={GHOST_SATELLITES}
+        selectedSatellite={selectedSatellite}
+        onSelectSatellite={setSelectedSatellite}
+        scanlinesEnabled={scanlinesEnabled}
+        onToggleScanlines={() => setScanlinesEnabled(!scanlinesEnabled)}
+        simSpeed={simSpeed}
+        onCycleSimSpeed={handleCycleSimSpeed}
+        audioEnabled={audioEnabled}
+        onToggleAudio={handleToggleAudio}
+      />
 
       {/* 2. MAIN WORKSPACE (Clean 2-Column Split Layout) */}
       <div className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-hidden relative">
