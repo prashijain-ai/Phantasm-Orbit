@@ -61,11 +61,35 @@ class GhostAudioSynthesizer {
     }
   }
 
+  public toggleAudio(enable: boolean) {
+    if (enable) {
+      if (!this.isAmbientPlaying) {
+        this.startAmbient();
+      }
+    } else {
+      if (this.isAmbientPlaying) {
+        this.stopAmbient();
+      }
+    }
+  }
+
   public isAmbientActive(): boolean {
     return this.isAmbientPlaying;
   }
 
+  // Auto-ignite ambient horror soundscape on mount / first user interaction
+  public autoStart() {
+    if (!this.isAmbientPlaying) {
+      try {
+        this.startAmbient();
+      } catch {
+        // Handled by browser autoplay policy until user gesture
+      }
+    }
+  }
+
   private startAmbient() {
+    this.initContext();
     if (!this.ctx || !this.masterGain) return;
 
     // 1. Pink/Cosmic Noise generator (White noise filtered down)
@@ -96,14 +120,14 @@ class GhostAudioSynthesizer {
     bandpass.frequency.setValueAtTime(1400, this.ctx.currentTime);
     bandpass.Q.setValueAtTime(3.5, this.ctx.currentTime);
 
-    // 2. Deep Sub-Bass Space Vacuum Drone (48Hz sine + 54Hz sine for beating horror hum)
+    // 2. Deep Sub-Bass Space Vacuum Drone (52Hz sine + 53.2Hz sine for beating horror hum)
     const droneOsc1 = this.ctx.createOscillator();
     droneOsc1.type = 'sine';
     droneOsc1.frequency.setValueAtTime(52, this.ctx.currentTime);
 
     const droneOsc2 = this.ctx.createOscillator();
     droneOsc2.type = 'sine';
-    droneOsc2.frequency.setValueAtTime(53.2, this.ctx.currentTime); // subtle beat frequency
+    droneOsc2.frequency.setValueAtTime(53.2, this.ctx.currentTime);
 
     const droneGain = this.ctx.createGain();
     droneGain.gain.setValueAtTime(0.2, this.ctx.currentTime);
@@ -207,13 +231,13 @@ class GhostAudioSynthesizer {
     }
   }
 
-  // Digital Séance medium invocation sound (spectral harmonic chime & phase shift)
+  // Digital Séance medium invocation sound
   public playSeanceInvocation() {
     try {
       this.initContext();
       if (!this.ctx || !this.masterGain) return;
 
-      const notes = [174, 285, 396, 528]; // Solfeggio / eerie mystery scale
+      const notes = [174, 285, 396, 528];
       notes.forEach((freq, idx) => {
         if (!this.ctx || !this.masterGain) return;
         const osc = this.ctx.createOscillator();
