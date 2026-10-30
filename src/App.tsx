@@ -30,11 +30,15 @@ export default function App() {
     }
   };
 
-  // Auto-ignite audio on first user pointer interaction or keystroke to satisfy browser autoplay policy
+  // Auto-ignite audio on mount and unlock on first user pointer interaction or keystroke
   useEffect(() => {
+    if (audioEnabled) {
+      audioSynth.autoStart();
+    }
+
     const unlockAudio = () => {
       if (audioEnabled) {
-        audioSynth.toggleAudio(true);
+        audioSynth.autoStart();
         audioSynth.playCarrierTone(selectedSatellite.seanceToneHz);
       }
       window.removeEventListener('pointerdown', unlockAudio);
