@@ -10,7 +10,8 @@
 
 🔗 **Live Interactive Command Center:** **[INSERT_YOUR_DEPLOYED_URL_HERE]**
 
-![Phantasm-Orbit 3D Command Center](https://github.com/prashijain-ai/Phantasm-Orbit/raw/main/public/preview.png)
+<img width="1470" height="956" alt="Screenshot 2026-10-29 at 10 50 40 PM copy" src="https://github.com/user-attachments/assets/b412e41c-1c6b-4f54-9b20-346cdb386da1" />
+
 
 
 ---
